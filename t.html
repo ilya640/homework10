@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+        .nav {
+            background-color: rgb(59, 56, 56);
+        }
+        ul {
+            padding-inline-start: 0;
+            margin: 0;
+        }
+        li {
+            display: inline-block;
+            position: relative; /* Позволяет дочерним элементам позиционироваться относительно родителя */
+        }
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;
+            font-size: 24px;
+            color: white;
+            display: block;
+            height: 50px;
+            width: 150px;
+            margin: 0;
+            text-align: center;
+            line-height: 50px; /* Центрирует текст по вертикали */
+            position: relative; /* Для корректного позиционирования псевдоэлемента */
+        }
+        a:hover {
+            background-color: rgb(122, 122, 210);
+        }
+        .menu {
+            display: none; /* Скрываем подменю по умолчанию */
+            position: absolute;
+            top: 50px; /* Располагаем подменю ниже основного элемента */
+            left: 0; /* Выравниваем по левому краю */
+            background-color: white;
+            z-index: 1; /* Устанавливаем z-index для отображения над другими элементами */
+        }
+        li:hover .menu, li:hover .menu2 {
+            display: block; 
+        }
+        .menu a:hover, .menu2 a:hover {
+            background-color: rgb(191, 185, 185);
+            color: grey;
+            border-left: 5px solid rgb(122, 122, 210); /* Показываем подменю при наведении на родительский элемент */
+        }
+        .menu a {
+            color: gray;
+            height: auto; /* Высота автоматически подстраивается под содержимое */
+            width: 200px;
+            margin: 0;
+            padding: 10px;
+            border-left: 5px solid white; /* Добавляем немного отступов для удобства */
+        }
+        .menu2 {
+            display: none;
+            left: 225px;
+            top: 0;
+        }
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        /* Стиль для иконок с использованием ::before */
+        .sprite::before {
+            content: ''; /* Обязательный контент для псевдоэлемента */
+            display: inline-block;
+            width: 32px; /* Ширина иконки */
+            height: 32px; /* Высота иконки */
+            background-image: url('./sprite.png'); /* Путь к изображению */
+            background-repeat: no-repeat; /* Не повторять изображение */
+            margin-right: 10px; /* Отступ между иконкой и текстом */
+        }
+
+        .house::before {
+            background-position: 0 0; /* Первая иконка */
+        }
+        .man::before {
+            background-position: -64px 0; /* Вторая иконка */
+        }
+        .galery::before {
+            background-position: -128px 0; /* Третья иконка */
+        }
+        .blog::before {
+            background-position: -192px 0; /* Четвертая иконка */
+        }
+        .book::before {
+            background-position: -256px 0; /* Пятая иконка */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Многоуровневое горизонтальное меню</h1>
+    <ul class="nav">
+        <li>
+            <a href="#" class="sprite house">Главная</a>
+            <ul class="menu">
+                <li><a href="#">Подменю 1</a></li>
+                <li><a href="#">Подменю 2</a></li>
+                <li><a href="#">Подменю 3</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="sprite man">О нас</a></li>
+        <li>
+            <a href="#" class="sprite galery">Портфолио</a>
+            <ul class="menu">
+                <li><a href="#">Подменю 1</a></li>
+                <li>
+                    <a href="#">Уровень 3 меню</a>
+                    <ul class="menu menu2">
+                        <li><a href="#">Подменю 4</a></li>
+                        <li><a href="#">Подменю 5</a></li>
+                        <li><a href="#">Подменю 6</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#" class="sprite blog">Блог</a></li>
+        <li><a href="#" class="sprite book">Контакты</a></li>
+    </ul>
+</body>
+</html>
